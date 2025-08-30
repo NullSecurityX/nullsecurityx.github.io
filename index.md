@@ -6,26 +6,25 @@ title: "NullSecurityX Hacking Articles Blog"
 # NullSecurityX  
 ### Hacking Articles Blog
 
-Merhaba! 👋  
-Burası NullSecurityX’in paylaştığı hacking, güvenlik ve teknik makalelerin yayınlandığı blogtur.  
-Aşağıda en güncel yazıları bulabilirsiniz:
+Welcome! 👋  
+This is the blog where NullSecurityX shares hacking, security, and technical articles.  
+Below you can find the most recent posts:
 
 ---
 
-## 📑 Son Yazılar
+## 📑 Latest Posts
 
 <ul>
   {% for post in site.posts %}
     <li>
-      <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>  
-      <small>📅 {{ post.date | date: "%d %B %Y" }}</small>
+      <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
     </li>
   {% endfor %}
 </ul>
 
 ---
 
-## 🔗 Sosyal Medya
+## 🔗 Social Media
 
 - 🐦 [Twitter](https://twitter.com/NullSecurityX)  
 - ▶️ [YouTube](https://www.youtube.com/@nullsecurityx)  
