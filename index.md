@@ -3,15 +3,6 @@ layout: default
 title: "NullSecurityX Hacking Articles Blog"
 ---
 
-<!-- HEADER / NAVIGATION -->
-<header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-  <div>
-    <a href="{{ "/" | relative_url }}" style="text-decoration: none; color: #f0f0f0; font-weight: bold; font-size: 1.2rem;">Home</a>
-    <a href="{{ "/about" | relative_url }}" style="text-decoration: none; color: #f0f0f0; margin-left: 1rem;">About</a>
-  </div>
-</header>
-
-
 <hr>
 
 <div id="postsList" style="display: flex; flex-direction: column; gap: 1rem;">
