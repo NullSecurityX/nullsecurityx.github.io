@@ -170,3 +170,12 @@ with open('FullAttackUUID.txt', 'r') as file:
 UUIDv1 is predictable due to timestamps and MAC addresses, making it exploitable. UUIDv4 is safer, but UUIDv1 remains in use, creating risks.
 
 ![exp](/assets/images/exp.png)  
+
+---
+
+## Acknowledgment
+
+I would like to sincerely thank [Çağrı Eser](https://cagrieser.com/) for his invaluable contributions and support.  
+
+You can connect with him on [LinkedIn](https://www.linkedin.com/in/cagrieser/).
+
