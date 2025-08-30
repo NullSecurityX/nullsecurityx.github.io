@@ -18,15 +18,56 @@ layout: default
 </article>
 
 <style>
+  /* Genel linkler */
   .post-content a {
-    color: #88c0d0; /* link renkleri Midnight temasına uygun */
+    color: #88c0d0;
     text-decoration: underline;
   }
-
   .post-content a:hover {
     color: #81a1c1;
   }
 
+  /* Görseller */
+  .post-content img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+
+  /* Kod blokları */
+  .post-content pre {
+    background-color: #2e3440;
+    color: #d8dee9;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  .post-content code {
+    background-color: #3b4252;
+    color: #eceff4;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+
+  /* Tablolar */
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+  .post-content th,
+  .post-content td {
+    border: 1px solid #4c566a;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  .post-content th {
+    background-color: #3b4252;
+  }
+
+  /* Responsive Header */
   @media (max-width: 768px) {
     header {
       flex-direction: column;
