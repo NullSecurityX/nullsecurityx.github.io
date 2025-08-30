@@ -3,28 +3,32 @@ layout: default
 title: "NullSecurityX Hacking Articles Blog"
 ---
 
+<!-- HEADER / NAVIGATION -->
+<header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+  <div>
+    <a href="{{ "/" | relative_url }}" style="text-decoration: none; color: #f0f0f0; font-weight: bold; font-size: 1.2rem;">Home</a>
+    <a href="{{ "/about" | relative_url }}" style="text-decoration: none; color: #f0f0f0; margin-left: 1rem;">About</a>
+  </div>
+
+  <form id="searchForm" style="display: flex; gap: 0.5rem;">
+    <input type="text" id="searchInput" placeholder="Search posts..." style="padding: 0.5rem; border-radius: 6px; border: none;">
+    <select id="categorySelect" style="padding: 0.5rem; border-radius: 6px; border: none;">
+      <option value="">All Categories</option>
+      {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
+      {% for tag in all_tags %}
+        {% if tag != "" %}
+        <option value="{{ tag }}">{{ tag }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+  </form>
+</header>
+
 # NullSecurityX
 ### Hacking Articles Blog
 
 👋 Welcome!  
 Here, **NullSecurityX** shares hacking, cybersecurity, and technical articles.  
-
----
-
-## 🔍 Search / Filter by Category
-
-<form id="searchForm" style="margin-bottom: 1.5rem;">
-  <input type="text" id="searchInput" placeholder="Search posts..." style="padding: 0.5rem; border-radius: 6px; border: none; width: 250px;">
-  <select id="categorySelect" style="padding: 0.5rem; border-radius: 6px; border: none; margin-left: 0.5rem;">
-    <option value="">All Categories</option>
-    {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
-    {% for tag in all_tags %}
-      {% if tag != "" %}
-      <option value="{{ tag }}">{{ tag }}</option>
-      {% endif %}
-    {% endfor %}
-  </select>
-</form>
 
 ---
 
@@ -80,6 +84,17 @@ Here, **NullSecurityX** shares hacking, cybersecurity, and technical articles.
   .post-card:hover {
     transform: scale(1.03);
     box-shadow: 0 6px 18px rgba(0,0,0,0.8);
+  }
+
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #searchForm {
+      width: 100%;
+      justify-content: flex-start;
+    }
   }
 </style>
 
