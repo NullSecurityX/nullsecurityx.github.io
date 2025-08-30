@@ -1,4 +1,4 @@
----
+[---
 layout: default
 title: "NullSecurityX Hacking Articles Blog"
 ---
@@ -64,3 +64,4 @@ title: "NullSecurityX Hacking Articles Blog"
     }
   }
 </style>
+](https://nullsecurityx.codes/uuid-sandwich-exploitation)
