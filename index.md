@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "NullSecurityX Hacking Articles Blog"
+title: "NullSecurityX Hacking Article's Blog"
 ---
 
 <!-- HEADER / NAVIGATION -->
