@@ -24,14 +24,6 @@ title: "NullSecurityX Hacking Articles Blog"
   </form>
 </header>
 
-# NullSecurityX
-### Hacking Articles Blog
-
-👋 Welcome!  
-Here, **NullSecurityX** shares hacking, cybersecurity, and technical articles.  
-
----
-
 ## 🌟 Featured Post
 
 {% assign featured = site.posts.first %}
