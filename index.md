@@ -30,6 +30,16 @@ title: "NullSecurityX Hacking Articles Blog"
 
 </div>
 
+<!-- SOCIAL MEDIA ICONS -->
+<div style="margin-top: 2rem; display: flex; gap: 1rem; font-size: 1.5rem;">
+  <a href="https://twitter.com/NullSecurityX" target="_blank" style="color: #1DA1F2;"><i class="fab fa-twitter"></i></a>
+  <a href="https://www.youtube.com/@nullsecurityx" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+  <a href="https://odysee.com/@nullsecurityx" target="_blank" style="color: #ff6600;"><i class="fab fa-odysee"></i></a>
+</div>
+
+<!-- FONT AWESOME -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 <style>
   .post-card:hover {
     transform: scale(1.02);
