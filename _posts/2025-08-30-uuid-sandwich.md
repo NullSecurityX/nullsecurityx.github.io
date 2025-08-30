@@ -29,7 +29,7 @@ https://portswigger.net/bappstore/65f32f209a72480ea5f1a0dac4f38248
 
 Also reference: https://datatracker.ietf.org/doc/html/rfc4122  
 
-![uuidv1](/img/UUID/uuidv1.png)
+![uuidv1](/assets/images/uuidv1.png)
 
 ### 10 Sequential Generations
 
@@ -58,7 +58,7 @@ The changing part `f2c6e447-3145-11ef` encodes the time. The MAC portion `08:00:
 Example UUID: `5c1dba54-ee3e-11ee-a951-0242ac120002`  
 Time portion: `1eeee3e5c1dba54`  
 
-![uuid extract](/img/UUID/UUID2.jpg)
+![uuid extract](/assets/images/UUID2.jpg)
 
 Decode timestamp:  
 
@@ -126,7 +126,7 @@ See: [Uuid-Exploitation](https://github.com/cagrieser/Uuid-Exploitation)
 
 In an IguCTF challenge, we exploited UUIDv1 Sandwich to access unauthorized files and retrieve a flag.  
 
-![igu cyber](/img/UUID/IguCyber.png)
+![igu cyber](/assets/images/IguCyber.png)
 
 Hashing filenames locally avoids server overload. Example script:  
 
@@ -169,5 +169,4 @@ with open('FullAttackUUID.txt', 'r') as file:
 
 UUIDv1 is predictable due to timestamps and MAC addresses, making it exploitable. UUIDv4 is safer, but UUIDv1 remains in use, creating risks.
 
-![exp](/img/UUID/exp.png)  
-![uuid gif](/img/UUID/uuid.gif)
+![exp](/assets/images/exp.png)  
