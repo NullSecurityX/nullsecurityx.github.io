@@ -13,24 +13,26 @@ title: "NullSecurityX Hacking Articles Blog"
 
 <hr>
 
-<!-- POSTS LIST -->
-<div id="postsList" style="display: flex; flex-direction: column; gap: 1.5rem;">
+<div id="postsList" style="display: flex; flex-direction: column; gap: 1rem;">
 
 {% for post in site.posts %}
-<div class="post-card" style="background-color: #1a1a1a; padding: 1rem; border-radius: 12px; display: flex; gap: 1rem; align-items: flex-start; box-shadow: 0 2px 6px rgba(0,0,0,0.5);">
+<div class="post-card" style="background-color: #1a1a1a; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.5); display: flex; gap: 1rem; align-items: flex-start;">
   
   {% if post.image %}
-  <img src="{{ post.image }}" alt="{{ post.title }}" style="width: 180px; height: auto; border-radius: 8px; object-fit: cover;">
+  <div style="flex-shrink: 0;">
+    <img src="{{ post.image }}" alt="{{ post.title }}" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+  </div>
   {% endif %}
   
-  <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
-    <h3 style="margin: 0; color: #f0f0f0;">{{ post.title }}</h3>
-    <p style="font-size: 0.8rem; color: #bbbbbb; margin: 0;">{{ post.date | date: "%d %B %Y" }}</p>
+  <div style="flex: 1;">
+    <h3 style="margin: 0 0 0.3rem 0; color: #f0f0f0;">{{ post.title }}</h3>
+    <p style="font-size: 0.8rem; color: #bbbbbb; margin: 0 0 0.5rem 0;">{{ post.date | date: "%d %B %Y" }}</p>
     {% if post.excerpt %}
     <p style="font-size: 0.85rem; color: #cccccc; margin: 0;">{{ post.excerpt | strip_html | truncate: 150 }}</p>
     {% endif %}
-    <a href="{{ post.url | relative_url }}" style="margin-top: auto; padding: 0.5rem 1rem; background-color: #88c0d0; color: #1a1a1a; border-radius: 6px; text-decoration: none; font-weight: bold; align-self: flex-start;">Read More</a>
+    <a href="{{ post.url | relative_url }}" style="margin-top: 0.5rem; display: inline-block; padding: 0.5rem 1rem; background-color: #88c0d0; color: #1a1a1a; border-radius: 6px; text-decoration: none; font-weight: bold;">Read More</a>
   </div>
+
 </div>
 {% endfor %}
 
@@ -54,9 +56,10 @@ title: "NullSecurityX Hacking Articles Blog"
     .post-card img {
       width: 100%;
       height: auto;
+      margin-bottom: 0.5rem;
     }
     .post-card a {
-      margin-top: 0.5rem;
+      margin-left: 0;
     }
   }
 </style>
