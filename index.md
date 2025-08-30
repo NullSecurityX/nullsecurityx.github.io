@@ -10,10 +10,7 @@ title: "NullSecurityX Hacking Articles Blog"
     <a href="{{ "/about" | relative_url }}" style="text-decoration: none; color: #f0f0f0; margin-left: 1rem;">About</a>
   </div>
 </header>
-<!-- Visitor Badge -->
-<div style="margin-top: 1rem; text-align: center;">
-  <img src="https://visitor-badge.laobi.icu/badge?page_id=NullSecurityX.nullsecurityx.github.io" alt="Visitor Count"/>
-</div>
+
 
 <hr>
 
@@ -41,7 +38,10 @@ title: "NullSecurityX Hacking Articles Blog"
 {% endfor %}
 
 </div>
-
+<!-- Visitor Badge -->
+<div style="margin-top: 1rem; text-align: center;">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=NullSecurityX.nullsecurityx.github.io" alt="Visitor Count"/>
+</div>
 <style>
   .post-card:hover {
     transform: scale(1.02);
@@ -67,3 +67,4 @@ title: "NullSecurityX Hacking Articles Blog"
     }
   }
 </style>
+
