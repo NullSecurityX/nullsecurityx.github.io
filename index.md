@@ -26,13 +26,13 @@ title: "NullSecurityX Hacking Articles Blog"
     <h3 style="color: #f0f0f0;">Latest Videos</h3>
     
     <!-- Example Video 1 -->
-    <iframe width="100%" height="200" src="https://www.youtube.com/embed/VIDEO_ID_1" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="200" src="https://www.youtube.com/embed/CejJWjyokFA" title="YouTube video" frameborder="0" allowfullscreen></iframe>
 
     <!-- Example Video 2 -->
-    <iframe width="100%" height="200" src="https://www.youtube.com/embed/VIDEO_ID_2" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="200" src="https://www.youtube.com/embed/P4Xf0SHqqqo" title="YouTube video" frameborder="0" allowfullscreen></iframe>
 
     <!-- Example Video 3 -->
-    <iframe width="100%" height="200" src="https://www.youtube.com/embed/VIDEO_ID_3" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="200" src="https://www.youtube.com/embed/Sf7LK8PnNf8" title="YouTube video" frameborder="0" allowfullscreen></iframe>
   </aside>
 
 </div>
