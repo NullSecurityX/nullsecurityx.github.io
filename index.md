@@ -54,27 +54,6 @@ Here, **NullSecurityX** shares hacking, cybersecurity, and technical articles.
 
 ---
 
-## 📑 Recent Posts
-
-<div id="postsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-
-{% for post in site.posts offset:1 %}
-<div class="post-card" style="background-color: #1a1a1a; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.5); transition: transform 0.2s, box-shadow 0.2s;">
-  <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: #f0f0f0;" data-tags="{{ post.tags | join: ',' }}">
-    <h3>{{ post.title }}</h3>
-    <p style="font-size: 0.8rem; color: #bbbbbb;">{{ post.date | date: "%d %B %Y" }}</p>
-    {% if post.excerpt %}
-    <p style="font-size: 0.85rem; color: #cccccc;">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-    {% endif %}
-    {% if post.tags %}
-    <p style="font-size: 0.75rem; color: #88c0d0; margin-top: 0.5rem;">
-      {% for tag in post.tags %}
-      <span>#{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
-      {% endfor %}
-    </p>
-    {% endif %}
-  </a>
-</div>
 {% endfor %}
 
 </div>
