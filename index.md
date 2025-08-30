@@ -11,10 +11,6 @@ title: "NullSecurityX Hacking Articles Blog"
   </div>
 </header>
 
-# NullSecurityX Hacking Articles Blog
-
-👋 Welcome!  
-Here, **NullSecurityX** shares hacking, cybersecurity, and technical articles.  
 
 <hr>
 
