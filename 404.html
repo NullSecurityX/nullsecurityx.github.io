@@ -1,0 +1,58 @@
+---
+layout: default
+title: "Page Not Found"
+permalink: /404.html
+---
+
+<!-- HEADER / NAVIGATION -->
+<header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+  <div>
+    <a href="{{ "/" | relative_url }}" style="text-decoration: none; color: #00ff99; font-weight: bold; font-size: 1.2rem;">Home</a>
+    <a href="{{ "/about/" | relative_url }}" style="text-decoration: none; color: #00ff99; margin-left: 1rem;">About</a>
+  </div>
+</header>
+
+<div id="terminal404" style="background-color:#000; color:#00ff99; padding:2rem; border-radius:12px; max-width:800px; margin:auto; font-family:'Courier New', monospace; min-height:400px; white-space: pre-wrap; overflow-wrap: break-word; position: relative;">
+
+<span id="cursor404" style="display:inline-block;">_</span>
+</div>
+
+<script>
+const terminal404 = document.getElementById('terminal404');
+const cursor404 = document.getElementById('cursor404');
+
+const text404 = `
+ERROR 404: Page Not Found
+The page you are looking for does not exist.
+
+Try going back to Home or visit the About page for more info.
+`;
+
+let index404 = 0;
+
+function type404() {
+  if(index404 < text404.length) {
+    const char = text404.charAt(index404);
+    terminal404.insertBefore(document.createTextNode(char === '\n' ? '\n' : char), cursor404);
+    index404++;
+    setTimeout(type404, 40);
+  }
+}
+
+type404();
+
+// Cursor blink
+setInterval(() => {
+  cursor404.style.visibility = (cursor404.style.visibility === 'visible') ? 'hidden' : 'visible';
+}, 500);
+</script>
+
+<style>
+#terminal404 a {
+  color: #00ff99;
+  text-decoration: underline;
+}
+#terminal404 a:hover {
+  color: #0ff;
+}
+</style>
