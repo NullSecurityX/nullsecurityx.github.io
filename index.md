@@ -126,10 +126,10 @@ Here, **NullSecurityX** shares hacking, cybersecurity, and technical articles.
 
 ## 🔗 Social Media
 
-<div style="display: flex; gap: 1rem; margin-top: 1rem;">
+<div style="display: flex; gap: 1rem; margin-top: 1rem;"><br>
 - 🐦 [Twitter](https://twitter.com/NullSecurityX)  
-- ▶️ [YouTube](https://www.youtube.com/@nullsecurityx)  
-- 🌐 [Odysee](https://odysee.com/@nullsecurityx)  
+<br>- ▶️ [YouTube](https://www.youtube.com/@nullsecurityx)  
+<br>- 🌐 [Odysee](https://odysee.com/@nullsecurityx)  
 </div>
 
 ---
