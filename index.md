@@ -7,6 +7,7 @@ title: "NullSecurityX Hacking Articles Blog"
 
   <!-- POSTS LIST -->
   <div id="postsList" style="flex: 2; display: flex; flex-direction: column; gap: 1rem;">
+
     {% for post in site.posts %}
     <div class="post-card" style="background-color: #1a1a1a; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.5); display: flex; justify-content: space-between; align-items: start;">
       <div>
@@ -19,20 +20,16 @@ title: "NullSecurityX Hacking Articles Blog"
       <a href="{{ post.url | relative_url }}" style="margin-left: 1rem; padding: 0.5rem 1rem; background-color: #88c0d0; color: #1a1a1a; border-radius: 6px; text-decoration: none; font-weight: bold;">Read More</a>
     </div>
     {% endfor %}
+
   </div>
 
   <!-- YOUTUBE SIDEBAR -->
   <aside style="flex: 1; display: flex; flex-direction: column; gap: 1rem;">
     <h3 style="color: #f0f0f0;">Latest Videos</h3>
     
-    <!-- Example Video 1 -->
-    <iframe width="100%" height="200" src="https://www.youtube.com/embed/CejJWjyokFA" title="YouTube video" frameborder="0" allowfullscreen></iframe>
-
-    <!-- Example Video 2 -->
-    <iframe width="100%" height="200" src="https://www.youtube.com/embed/P4Xf0SHqqqo" title="YouTube video" frameborder="0" allowfullscreen></iframe>
-
-    <!-- Example Video 3 -->
-    <iframe width="100%" height="200" src="https://www.youtube.com/embed/Sf7LK8PnNf8" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="250" src="https://www.youtube.com/embed/CejJWjyokFA" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="250" src="https://www.youtube.com/embed/P4Xf0SHqqqo" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="250" src="https://www.youtube.com/embed/Sf7LK8PnNf8" title="YouTube video" frameborder="0" allowfullscreen></iframe>
   </aside>
 
 </div>
@@ -43,10 +40,13 @@ title: "NullSecurityX Hacking Articles Blog"
     box-shadow: 0 4px 12px rgba(0,0,0,0.6);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     div[style*="display: flex; gap: 2rem;"] {
       flex-direction: column;
     }
+  }
+
+  @media (max-width: 768px) {
     .post-card {
       flex-direction: column;
       align-items: flex-start;
