@@ -11,12 +11,12 @@
 </header>
 
 <main>
-  <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🎥 ## `root@nullsecurityx:~$ videos`
-    
+  <h3 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🎥 ## `root@nullsecurityx:~$ videos`</h3>
+    <br>
 
   <!-- Embed Player -->
 
-  <div style="display:flex; justify-content:center; margin-bottom:2rem;">
+
       <br>
     <iframe width="800" height="450" src="https://www.youtube.com/embed/P4Xf0SHqqqo" 
       title="Latest NullSecurityX Video" frameborder="0" allowfullscreen>
