@@ -6,12 +6,14 @@
   <nav style="gap:1rem;">
     <a href="{{ '/' | relative_url }}">Home</a>
     <a href="{{ '/about' | relative_url }}">About</a>
-    <a href="{{ '/youtube' | relative_url }}">YouTube</a>
+    <a href="{{ '/youtube' | relative_url }}">Videos</a>
   </nav>
 </header>
 
 <main>
-  <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🎥 NullSecurityX YouTube Channel</h1>
+  <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🎥 
+    ## ┌──(root㉿nullsecurityx)-[~/videos]
+    ## └─$ ls</h1>
 
   <!-- Embed Player -->
   <div style="display:flex; justify-content:center; margin-bottom:2rem;">
