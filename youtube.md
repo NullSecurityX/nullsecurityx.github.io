@@ -13,7 +13,7 @@
 <main>
   <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🎥 
     ## ┌──(root㉿nullsecurityx)-[~/videos]
-    ## └─$ ls</h1>
+   <br>
 
   <!-- Embed Player -->
   <div style="display:flex; justify-content:center; margin-bottom:2rem;">
