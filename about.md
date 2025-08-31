@@ -4,66 +4,36 @@ title: "About NullSecurityX"
 permalink: /about/
 ---
 
-<!-- HEADER / NAVIGATION -->
-<header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-  <div>
-    <a href="{{ "/" | relative_url }}" style="text-decoration: none; color: #00ff99; font-weight: bold; font-size: 1.2rem;">Home</a>
-    <a href="{{ "/about/" | relative_url }}" style="text-decoration: none; color: #00ff99; margin-left: 1rem;">About</a>
-  </div>
-</header>
+<p align="center">
+  <img src="/assets/images/logo.png" alt="NullSecurityX Logo" width="150" />
+</p>
 
-<!-- TERMINAL STYLE CONTENT -->
-<div id="terminal" style="background-color:#000; color:#00ff99; padding:2rem; border-radius:12px; max-width:800px; margin:auto; font-family: 'Courier New', monospace; white-space: pre-wrap; overflow-wrap: break-word; min-height:400px; position: relative;">
+<h1 align="center">NullSecurityX</h1>
 
-<span id="cursor" style="display:inline-block;">_</span>
-</div>
+<p align="center">
+  💻 Exploring the depths of cyberspace, breaking limits, and pushing boundaries in security research.<br>
+  ⚡ Passionate about ethical hacking, pentesting, and uncovering the unseen.<br>
+  🕶️ Welcome to the underground side of knowledge.
+</p>
 
-<script>
-const terminal = document.getElementById('terminal');
-const cursor = document.getElementById('cursor');
+---
 
-const text = `
-Welcome to NullSecurityX! 👾
-This blog shares hacking, cybersecurity, and technical articles.
+## 🌐 My Links  
 
-What we focus on:
-- Ethical hacking tutorials
-- Security research
-- Technical guides and insights
-
-Connect with Us:
-- YouTube: https://www.youtube.com/@nullsecurityx
-- Twitter: https://twitter.com/NullSecurityX
-- Odysee: https://odysee.com/@NullSecurityX:0
-- LinkedIn: https://www.linkedin.com/company/nullsecx/
-`;
-
-let index = 0;
-
-function type() {
-  if(index < text.length) {
-    const char = text.charAt(index);
-    terminal.insertBefore(document.createTextNode(char === '\n' ? '\n' : char), cursor);
-    index++;
-    setTimeout(type, 30);
-  }
-}
-
-type();
-
-// Cursor blink
-setInterval(() => {
-  cursor.style.visibility = (cursor.style.visibility === 'visible') ? 'hidden' : 'visible';
-}, 500);
-</script>
-
-<style>
-/* Hover efekti için linkleri neon yapıyoruz */
-#terminal a {
-  color: #00ff99;
-  text-decoration: underline;
-}
-#terminal a:hover {
-  color: #0ff;
-}
-</style>
+<p align="center">
+  <a href="https://www.youtube.com/@nullsecurityx" target="_blank">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
+  </a>
+  <a href="https://twitter.com/NullSecurityX" target="_blank">
+    <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" />
+  </a>
+  <a href="https://odysee.com/@NullSecurityX:0" target="_blank">
+    <img src="https://img.shields.io/badge/Odysee-ED1C24?style=for-the-badge&logo=odysee&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/company/nullsecx/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://buymeacoffee.com/nullsecx" target="_blank">
+    <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" />
+  </a>
+</p>
