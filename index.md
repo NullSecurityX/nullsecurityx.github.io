@@ -8,7 +8,7 @@ title: "NullSecurityX Hacking Articles Blog"
   <div>
     <a href="{{ "/" | relative_url }}" style="text-decoration: none; color: #f0f0f0; font-weight: bold; font-size: 1.2rem;">Home</a>
     <a href="{{ "/about" | relative_url }}" style="text-decoration: none; color: #f0f0f0; margin-left: 1rem;">About</a>
-    <a href="{{ "/youtube" | relative_url }}" style="text-decoration: none; color: #f0f0f0; margin-left: 1rem;">Youtube</a>
+    <a href="{{ "/youtube" | relative_url }}" style="text-decoration: none; color: #f0f0f0; margin-left: 1rem;">Videos</a>
   </div>
 </header>
 
@@ -53,12 +53,13 @@ title: "NullSecurityX Hacking Articles Blog"
   <a href="https://www.linkedin.com/company/nullsecx/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
+    <a href="https://github.com/NullSecurityX" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
   <a href="https://buymeacoffee.com/nullsecx" target="_blank">
     <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" />
   </a>
-  <a href="https://github.com/NullSecurityX" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
-  </a>
+
 </p>
 
 <!-- Visitor Badge -->
