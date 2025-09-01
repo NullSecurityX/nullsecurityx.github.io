@@ -21,6 +21,18 @@ layout: default
   <h1>{{ page.title }}</h1>
   <p style="color:#bbbbbb; font-size:0.9rem;">{{ page.date | date: "%d %B %Y" }}</p>
   {{ content }}
+<hr>
+<div class="post-navigation">
+  {% if page.previous %}
+    <a class="prev-post" href="{{ page.previous.url }}">&laquo; {{ page.previous.title }}</a>
+  {% endif %}
+
+  {% if page.next %}
+    <a class="next-post" href="{{ page.next.url }}">{{ page.next.title }} &raquo;</a>
+  {% endif %}
+</div>
+
+  
 </article>
 
 <style>
