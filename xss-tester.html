@@ -9,11 +9,14 @@
 <body>
   <header>
     <h1>Online XSS Tester</h1>
-    <p>Select a payload and test it. Supports alert, DOM, console, and HTML tests.</p>
+    <p>Select a payload, enter the target URL, and test it. Supports alert, DOM, console, and HTML tests.</p>
   </header>
 
   <main>
     <section class="controls">
+      <label for="targetUrl">Target URL / Domain:</label>
+      <input type="text" id="targetUrl" placeholder="https://example.com">
+
       <label for="category">Category:</label>
       <select id="category">
         <option value="alert">Alert</option>
@@ -33,5 +36,28 @@
 
   <script src="payloads.js"></script>
   <script src="xss-tester.js"></script>
+
+  <script>
+    // JS tarafında target URL'yi alıp konsolda gösterebiliriz
+    const targetInput = document.getElementById('targetUrl');
+    const runButton = document.getElementById('runPayload');
+    const resultsDiv = document.getElementById('results');
+    const categorySelect = document.getElementById('category');
+
+    runButton.addEventListener('click', () => {
+      const targetUrl = targetInput.value.trim();
+      const category = categorySelect.value;
+
+      if(!targetUrl) {
+        alert("Please enter a target URL.");
+        return;
+      }
+
+      resultsDiv.textContent = `Testing XSS on: ${targetUrl} with category: ${category}`;
+      
+      // Burada mevcut xss-tester.js fonksiyonunu çağırabilirsin
+      runPayload(category); // runPayload fonksiyonu xss-tester.js'de tanımlı
+    });
+  </script>
 </body>
 </html>
