@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online XSS Tester</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Online XSS Tester</h1>
+    <p>Select a payload and test it. Supports alert, DOM, console, and HTML tests.</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <label for="category">Category:</label>
+      <select id="category">
+        <option value="alert">Alert</option>
+        <option value="dom">DOM</option>
+        <option value="console">Console</option>
+        <option value="html">HTML</option>
+      </select>
+
+      <button id="runPayload">Run Payload</button>
+    </section>
+
+    <section class="output">
+      <h2>Results</h2>
+      <div id="results">The output of the payload will appear here.</div>
+    </section>
+  </main>
+
+  <script src="payloads.js"></script>
+  <script src="xss-tester.js"></script>
+</body>
+</html>
