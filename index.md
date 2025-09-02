@@ -62,10 +62,6 @@ title: "NullSecurityX Hacking Articles Blog"
 
 </p>
 
-<!-- Visitor Badge -->
-<div style="margin-top: 1rem; text-align: center;">
-  <img src="https://visitor-badge.laobi.icu/badge?page_id=NullSecurityX.nullsecurityx.github.io" alt="Visitor Count"/>
-</div>
 <style>
   .post-card:hover {
     transform: scale(1.02);
