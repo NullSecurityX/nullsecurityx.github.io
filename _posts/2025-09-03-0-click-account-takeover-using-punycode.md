@@ -6,21 +6,143 @@ image: assets/images/punycode.png
 ---
 
 
-# 0-Click Account Takeover Using Punycode Emails for Access --- Technical Analysis (With Explanations)
+# 0-Click Account Takeover Using Punycode Emails for Access --- Technical Analysis (Expanded Intro + Explanations)
 
 > **IMPORTANT ETHICAL NOTE:** This document is **not intended** to
 > provide step-by-step exploit guidance for unauthorized access. All
-> code samples are for research and demonstration purposes only.
+> code samples are for research and demonstration purposes only
+> (local/lab-safe).
 
 ------------------------------------------------------------------------
 
-## Abstract
+## Executive Summary (Expanded)
 
-This paper analyzes how **Punycode / IDN** encoding of email domains and
-Unicode confusable characters can introduce ambiguity into email-based
-authentication flows. We show Unicode normalization, parsing pitfalls,
-regex issues, database collation effects, and provide annotated code
-demonstrations.
+Email remains the trust anchor for most account recovery and
+"passwordless" sign‑in schemes (password reset links, magic links,
+one‑time URLs). A single assumption underpins these flows: *the party
+receiving the message is the intended mailbox owner.* When
+**Internationalized Domain Names (IDN)** and **Unicode confusables**
+enter the pipeline, that assumption can silently fail **without any
+victim interaction** --- yielding a *0‑click account takeover* risk.
+
+This paper dissects the string-processing layer where the risk
+originates. The mechanism is not social engineering; it is a
+**canonicalization mismatch** across components that handle email
+addresses differently:
+
+-   **Applications** often compare/display user emails in **Unicode**
+    for UX, but store or route using **ASCII/Punycode (ACE)**.
+-   **Libraries** and **frameworks** auto-convert IDN between Unicode
+    and ACE at different boundaries (UI, validation, DB, mailer).
+-   **Databases** may apply **collations** that consider visually
+    similar text "equal" or, conversely, treat canonically-equal text as
+    distinct.
+-   **Regex**-only validators and naive normalizers create acceptance
+    gaps for Unicode code points that are *render-equivalent* but
+    *code‑point‑distinct*.
+
+The result: two addresses that *look the same* to humans (and sometimes
+to logs or UI) can be handled as different strings by the mail
+transport, or vice versa. If an application relies on brittle
+comparisons at any point in the recovery or magic-link pipeline, a
+malicious but "confusable" address may end up receiving privileged links
+**with zero user action required by the victim**.
+
+------------------------------------------------------------------------
+
+## What "0‑Click" Means in Email Auth
+
+"0‑click" here means the compromise does **not** require the target user
+to click, approve, or interact. The attacker leverages how the
+**application** and its **infrastructure** *emit* and *deliver*
+privileged links when presented with a visually confusable but distinct
+address.
+
+Two common flows:
+
+1)  **Password Reset Flow**
+
+```{=html}
+<!-- -->
+```
+    User (claims email)  →  App backend  →  Token issuance  →  Mailer/MTA  →  Recipient domain  →  Mailbox
+                              │
+                              └─ Address canonicalization & equality checks happen here
+
+2)  **Magic Link (Passwordless) Flow**
+
+```{=html}
+<!-- -->
+```
+    Claimed email  →  Identity/Session service  →  Signed login URL  →  Email delivery  →  Mailbox → Auth
+                         │
+                         └─ Any mismatch here can route the link to an unintended but confusable address
+
+Crucially, **no user interaction** by the legitimate owner is necessary
+if the pipeline itself misroutes or mis-validates based on Unicode/IDN
+ambiguity.
+
+------------------------------------------------------------------------
+
+## Where Ambiguity Enters: A Layer-by-Layer View
+
+**A. UI & Input Parsing**\
+- Browsers and input widgets accept Unicode. Users type or paste
+addresses that *render* like popular domains. - Some frameworks
+auto-display IDN in Unicode for readability, masking ACE (`xn--`) form.
+
+**B. Validation & Normalization**\
+- Regex written for ASCII misses Unicode confusables (e.g., FULLWIDTH
+forms, Cyrillic lookalikes, Greek omicron). - Inconsistent use of
+**NFC/NFD/NFKC/NFKD** means two visually identical strings may not
+compare equal.
+
+**C. Storage & Lookup (DB)**\
+- Application might store the **display** (Unicode) form or the **wire**
+(ACE) form inconsistently. - Collation/locale rules can deem strings
+equal/unequal in surprising ways, impacting uniqueness constraints and
+lookups.
+
+**D. Mail Emission & Transport**\
+- SMTP envelope addresses and **To:** headers can diverge depending on
+library defaults. - MTAs/MUAs vary in how they render or downgrade IDN;
+logs might hide the confusable points, confusing incident response.
+
+**E. Logging/Alerting**\
+- If logs store only rendered Unicode without code points, responders
+won't see the difference between `gmail.com` and `gｍail.com` (U+FF4D).
+
+------------------------------------------------------------------------
+
+## End-to-End Example (Conceptual, Non‑Operational)
+
+-   Legitimate account: `victim@gmail.com` (all ASCII Latin).\
+-   Confusable lookalike: `victim@gｍail.com` where `ｍ` is **U+FF4D**
+    FULLWIDTH LATIN SMALL LETTER M.\
+-   If the app compares the **displayed Unicode** value against stored
+    **Unicode** without canonical rules that map confusables, it may
+    treat them as "same enough" at one boundary yet **route** mail to
+    the **attacker‑controlled domain** elsewhere (where ACE actually
+    differs).\
+-   The attacker then receives the reset/magic link even though the
+    victim never touched anything --- a **0‑click** condition created by
+    **canonicalization drift**.
+
+> We do **not** include operational steps (domain registration, MX
+> setup, routing). This analysis stays at string-processing and
+> validation behavior.
+
+------------------------------------------------------------------------
+
+## Quick Primer: IDN / Punycode / Unicode Confusables
+
+-   **IDN** allows non‑ASCII domain labels by transforming Unicode to
+    ASCII **ACE** form using **Punycode**; ACE labels start with `xn--`.
+-   **Punycode** is a reversible mapping; libraries exist across
+    languages (Python `idna`, Node `punycode`, Go `x/net/idna`).\
+-   **Confusables** are distinct code points that **render similarly**
+    (e.g., Latin `m` vs FULLWIDTH `ｍ` U+FF4D; Latin `o` vs Cyrillic `о`
+    U+043E).
 
 ------------------------------------------------------------------------
 
@@ -234,9 +356,13 @@ normalized level.\
 
 ## Conclusion
 
-Each code snippet demonstrates a different weak point in handling
-Unicode/Punycode in email flows. Explanations clarify why these
-mismatches matter and how inconsistencies arise.
+The "0‑click" risk is a byproduct of mixed Unicode/ACE handling across
+UI, validation, storage, and mail emission layers. By examining
+code‑point behavior and normalization boundaries (without any
+operational exploit steps), this paper shows how brittle assumptions in
+email-based auth can create implicit trust violations that an attacker
+can abuse *without victim interaction*.
+
 
 
 <div class="share-buttons">
