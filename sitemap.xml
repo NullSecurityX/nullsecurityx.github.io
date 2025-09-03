@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nullsecurityx.codes/</loc>
-    <lastmod>2025-09-03</lastmod>
+    <lastmod>2025-08-30</lastmod>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://nullsecurityx.codes/uuid-sandwich-exploitation</loc>
-    <lastmod>2025-09-03</lastmod>
+    <lastmod>2025-08-30</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://nullsecurityx.codes/cve-2025-29927-nextjs-middleware-authorization-bypass</loc>
-    <lastmod>2025-09-03</lastmod>
+    <lastmod>2025-08-31</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://nullsecurityx.codes/cve-2025-49113-roundcube-rce</loc>
-    <lastmod>2025-09-03</lastmod>
+    <lastmod>2025-09-01</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://nullsecurityx.codes/cve-2025-8088-winrar-directory-traversal-rce</loc>
-    <lastmod>2025-09-03</lastmod>
+    <lastmod>2025-09-02</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
