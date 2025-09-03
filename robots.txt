@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nullsecurityx.codes/sitemap.xml
