@@ -34,4 +34,9 @@
     <lastmod>2025-09-03</lastmod>
     <priority>0.8</priority>
   </url>
+    <url>
+    <loc>https://nullsecurityx.codes/cve-2025-57833-django-sql-injection</loc>
+    <lastmod>2025-09-04</lastmod>
+    <priority>0.8</priority>
+  </url>
 </urlset>
