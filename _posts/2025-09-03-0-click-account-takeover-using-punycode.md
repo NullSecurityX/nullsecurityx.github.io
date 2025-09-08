@@ -1,7 +1,7 @@
 ---
 title: "0-Click Account Takeover Using Punycode Emails for Access"
 layout: post
-tags: [Punycode, IDN, Unicode, email-security, account-takeover, phishing, parsing, exploit, hacking, cybersecurity]
+tags: [Punycode, IDN, Unicode, email-security, account-takeover, phishing, parsing, exploit, hacking, cybersecurity, nullsecurityx]
 image: assets/images/punycode.png
 ---
 
@@ -411,6 +411,7 @@ can abuse *without victim interaction*.
 <!-- Share Buttons End -->
 
 
+NullSecurityX
 ## 📺 Video Demonstration
 
 <iframe width="100%" height="500" src="https://www.youtube.com/embed/_BkM5llJ_bo" title="0-Click Account Takeover Using Punycode Emails for Access" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
