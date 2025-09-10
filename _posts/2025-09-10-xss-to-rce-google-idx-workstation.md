@@ -1,5 +1,5 @@
 ---
-title: "XSS to RCE in Google IDX Workstation: A Technical Deep Dive"
+title: "XSS to RCE in Google IDX Workstation: A Technical Deep Dive $22,500 Bounty Earned 💰"
 layout: post
 tags: [Google, ProjectIDX, FirebaseStudio, XSS, RCE, security, pentesting, red-team, web-security, JavaScript, exploit, hacking, cybersecurity, GCP, bugbounty, XSS to RCE in Google IDX Workstation: A Technical Deep Dive]
 image: /assets/images/xssrce.png
@@ -128,19 +128,21 @@ Vulnerabilities like this highlight the double-edged sword of web-based IDEs –
 
 For a visual walkthrough of the exploit, check out this demo video from the original disclosure:
 
-<video controls>
-  <source src="[https://video.twimg.com/amplify_video/1965327561757028224/vid/avc1/488x270/eoeXcdjdjq3ergXA.mp4?tag=16](https://x.com/i/status/1965327615277027446)" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<blockquote class="twitter-tweet">
+  <p lang="tr" dir="ltr">...</p>
+  &mdash; Kullanıcı (@username)
+  <a href="https://x.com/i/status/1965327615277027446">Time</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 
 <!-- Share Buttons Start -->
 <div class="share-buttons">
   <p>Share this post:</p>
-  <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=CVE-2025-8085: Unauthenticated SSRF in Ditty WordPress Plugin&url={{ page.url | absolute_url }}" target="_blank">Twitter</a>
+  <a class="share-btn twitter" href="XSS to RCE in Google IDX Workstation: A Technical Deep Dive $22,500 Bounty Earned&url={{ page.url | absolute_url }}" target="_blank">Twitter</a>
   <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank">Facebook</a>
-  <a class="share-btn reddit" href="https://www.reddit.com/submit?url={{ page.url | absolute_url }}&title=CVE-2025-8085: Unauthenticated SSRF in Ditty WordPress Plugin" target="_blank">Reddit</a>
+  <a class="share-btn reddit" href="https://www.reddit.com/submit?url={{ page.url | absolute_url }}&title=XSS to RCE in Google IDX Workstation: A Technical Deep Dive $22,500 Bounty Earned" target="_blank">Reddit</a>
 </div>
 
 <style>
