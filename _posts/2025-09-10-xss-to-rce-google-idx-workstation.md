@@ -128,12 +128,14 @@ Vulnerabilities like this highlight the double-edged sword of web-based IDEs –
 
 For a visual walkthrough of the exploit, check out this demo video from the original disclosure:
 
-<blockquote class="twitter-tweet">
-  <p lang="tr" dir="ltr">...</p>
-  &mdash; Kullanıcı (@username)
-  <a href="https://x.com/i/status/1965327615277027446">Time</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<iframe
+  src="https://twitframe.com/show?url=https://x.com/i/status/1965327615277027446"
+  width="550"
+  height="520"
+  frameborder="0"
+  scrolling="no"
+  allowfullscreen>
+</iframe>
 
 
 
