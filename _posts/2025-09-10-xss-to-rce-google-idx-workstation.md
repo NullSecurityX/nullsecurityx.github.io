@@ -129,7 +129,7 @@ Vulnerabilities like this highlight the double-edged sword of web-based IDEs –
 For a visual walkthrough of the exploit, check out this demo video from the original disclosure:
 
 <a href="https://x.com/i/status/1965327615277027446" target="_blank" rel="noopener">
-  <img src="/assets/images/xssrce.png" alt="Tweet video" style="max-width:100%;height:auto;">
+  <img src="/assets/images/xssidx.png" alt="Tweet video" style="max-width:100%;height:auto;">
 </a>
 
 
