@@ -9,7 +9,7 @@ category: security
 
 # XSS to RCE in Google IDX Workstation: A Technical Deep Dive
 
-Hey there, I'm someone who loves digging into security vulnerabilities like this. Cloud-based development environments like Google's Project IDX (now integrated into Firebase Studio) make life easier for developers, but they also come with some intriguing security risks. Discovered in September 2025, this XSS vulnerability escalates to Remote Code Execution (RCE), potentially leaking Google Cloud Platform (GCP) tokens. Found by Aditya Sunny from NullSecurityX, it earned a $22,500 bounty from Google's Vulnerability Reward Program. Let's dive into the technical details together, examining code snippets and how the exploit works. I'll keep it natural, like we're chatting over coffee, but with solid technical depth.
+Hey there, I'm someone who loves digging into security vulnerabilities like this. Cloud-based development environments like Google's Project IDX (now integrated into Firebase Studio) make life easier for developers, but they also come with some intriguing security risks. Discovered in September 2025, this XSS vulnerability escalates to Remote Code Execution (RCE), potentially leaking Google Cloud Platform (GCP) tokens. Let's dive into the technical details together, examining code snippets and how the exploit works. I'll keep it natural, like we're chatting over coffee, but with solid technical depth.
 
 ## The Basics of IDX Workstation
 
