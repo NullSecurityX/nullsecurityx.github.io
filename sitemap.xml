@@ -29,25 +29,52 @@
     <lastmod>2025-09-02</lastmod>
     <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://nullsecurityx.codes/0-click-account-takeover-using-punycode</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.8</priority>
   </url>
+  
     <url>
     <loc>https://nullsecurityx.codes/cve-2025-57833-django-sql-injection</loc>
     <lastmod>2025-09-04</lastmod>
     <priority>0.8</priority>
   </url>
+    
   <url>
     <loc>https://nullsecurityx.codes/advanced-ssrf-chaining-with-cloud-metadata-access</loc>
     <lastmod>2025-09-06</lastmod>
     <priority>0.8</priority>
   </url>
+  
     <url>
     <loc>https://nullsecurityx.codes/cve-2025-8085-wordpress-ditty-unauthenticated-ssrf</loc>
     <lastmod>2025-09-08</lastmod>
     <priority>0.8</priority>
   </url>
   
+   <url>
+    <loc>https://nullsecurityx.codes/xss-to-rce-google-idx-workstation</loc>
+    <lastmod>2025-09-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+      <url>
+    <loc>https://nullsecurityx.codes/cve-2025-54236-sessionreaper-unauthenticated-rce-in-magento</loc>
+    <lastmod>2025-09-13</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+     <url>
+    <loc>https://nullsecurityx.codes/cve-2025-10585-chrome-v8-type-confusion-zeroday</loc>
+    <lastmod>2025-09-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+       <url>
+    <loc>https://nullsecurityx.codes/ssrf-vulnerability-flask-0day-vulnerability</loc>
+    <lastmod>2025-09-21</lastmod>
+    <priority>0.8</priority>
+  </url>
 </urlset>
