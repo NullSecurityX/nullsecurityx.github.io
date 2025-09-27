@@ -195,9 +195,9 @@ CSPT remains one of the most dynamic client-side threats in 2025, with traversal
 <!-- Share Buttons Start -->
 <div class="share-buttons">
   <p>Share this post:</p>
-  <a class="share-btn twitter" href="SessionReaper (CVE-2025-54236): Magento & Adobe Commerce Deserialization Exploit Deep Dive&url={{ page.url | absolute_url }}" target="_blank">Twitter</a>
+  <a class="share-btn twitter" href="Client-Side Path Traversal: From XSS to RCE — A 2025 Technical Deep Dive&url={{ page.url | absolute_url }}" target="_blank">Twitter</a>
   <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank">Facebook</a>
-  <a class="share-btn reddit" href="https://www.reddit.com/submit?url={{ page.url | absolute_url }}&title=SessionReaper (CVE-2025-54236): Magento & Adobe Commerce Deserialization Exploit Deep Dive" target="_blank">Reddit</a>
+  <a class="share-btn reddit" href="https://www.reddit.com/submit?url={{ page.url | absolute_url }}&title=Client-Side Path Traversal: From XSS to RCE — A 2025 Technical Deep Dive" target="_blank">Reddit</a>
 </div>
 
 <style>
